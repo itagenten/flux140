@@ -13,7 +13,7 @@ define([
         template: JST['app/scripts/templates/application.ejs']
     });
 
-    var timSlider = new TimeSlider();
+    var timeSlider = new TimeSlider();
 
     return ApplicationView;
 });

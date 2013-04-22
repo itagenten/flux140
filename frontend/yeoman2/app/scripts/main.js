@@ -33,5 +33,5 @@ require([
 ], function (Backbone, AppView) {
     Backbone.history.start();
 
-    var App = new AppView();
+    window.App = new AppView();
 });

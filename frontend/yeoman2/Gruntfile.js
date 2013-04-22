@@ -105,6 +105,7 @@ module.exports = function (grunt) {
                 'Gruntfile.js',
                 '<%= yeoman.app %>/scripts/{,*/}*.js',
                 '!<%= yeoman.app %>/scripts/vendor/*',
+                '!<%= yeoman.app %>/scripts/templates/compiled.js',
                 'test/spec/{,*/}*.js'
             ]
         },
@@ -253,7 +254,7 @@ module.exports = function (grunt) {
             },
             compile: {
                 files: {
-                    '.tmp/scripts/templates.js': ['<%= yeoman.app %>/scripts/templates/*.ejs']
+                    '<%= yeoman.app %>/scripts/templates/compiled.js': ['<%= yeoman.app %>/scripts/templates/*.ejs']
                 }
             }
         }

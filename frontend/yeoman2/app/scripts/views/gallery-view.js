@@ -14,3 +14,4 @@ define([
 
     return GalleryView;
 });
+

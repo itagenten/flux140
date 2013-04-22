@@ -6,11 +6,10 @@ define([
 ], function ($, Backbone) {
     'use strict';
 
-  var ApplicationRouter = Backbone.Router.extend({
-    routes: {
-    },
+    var ApplicationRouter = Backbone.Router.extend({
+        routes: {
+        },
+    });
 
-  });
-
-  return ApplicationRouter;
+    return ApplicationRouter;
 });

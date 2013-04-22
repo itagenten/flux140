@@ -9,7 +9,7 @@ define([
 
     var ApplicationModel = Backbone.Model.extend({
         defaults: {
-           gallery: new GalleryModel()
+            gallery: new GalleryModel()
         }
     });
 

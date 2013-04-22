@@ -24,6 +24,7 @@ require.config({
         backbone: '../components/backbone-amd/backbone',
         underscore: '../components/underscore-amd/underscore',
         'bootstrap-dropdown': '../components/bootstrap/js/bootstrap-dropdown',
+        templates: 'templates/compiled',
     }
 });
 

@@ -3,11 +3,13 @@
 define([
     'underscore',
     'backbone',
-], function (_, Backbone) {
+    'models/gallery-model',
+], function (_, Backbone, GalleryModel) {
     'use strict';
 
     var ApplicationModel = Backbone.Model.extend({
-        defaults:{
+        defaults: {
+           gallery: new GalleryModel()
         }
     });
 

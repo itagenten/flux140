@@ -3,7 +3,7 @@
 define([
     'underscore',
     'backbone',
-    'collection/images-collection',
+    'collections/images-collection',
 ], function (_, Backbone, ImagesCollection) {
     'use strict';
 

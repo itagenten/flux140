@@ -29,9 +29,20 @@ require.config({
 
 require([
     'backbone',
-    'views/application-view'
-], function (Backbone, AppView) {
+    'models/application-model',
+    'views/application-view',
+], function (Backbone, AppModel, AppView) {
     Backbone.history.start();
 
-    window.App = new AppView();
+    window.App = {
+        Models: {
+            App: new AppModel()
+        },
+        Views: {
+            App: new AppView()
+        },
+        Collections: {
+        },
+    };
 });
+

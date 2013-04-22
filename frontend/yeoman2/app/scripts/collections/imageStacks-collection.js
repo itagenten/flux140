@@ -3,12 +3,12 @@
 define([
     'underscore',
     'backbone',
-    'models/imageStacks-model'
-], function (_, Backbone, ImageStacksModel) {
+    'models/imageStack-model'
+], function (_, Backbone, ImageStackModel) {
     'use strict';
 
     var ImageStacksCollection = Backbone.Collection.extend({
-        model: ImageStacksModel
+        model: ImageStackModel
     });
 
     return ImageStacksCollection;

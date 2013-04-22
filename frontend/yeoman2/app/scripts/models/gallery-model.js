@@ -3,11 +3,14 @@
 define([
     'underscore',
     'backbone',
-], function (_, Backbone) {
+    'collections/imageStacks-collection',
+], function (_, Backbone, ImageStacksCollection) {
     'use strict';
 
     var GalleryModel = Backbone.Model.extend({
-        defaults:{
+        defaults: {
+            browser: null,
+            imageStacks: new ImageStacksCollection()
         }
     });
 

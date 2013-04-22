@@ -3,13 +3,14 @@
 define([
     'underscore',
     'backbone',
-    'models/images-model'
-], function (_, Backbone, ImagesModel) {
+    'models/image-model'
+], function (_, Backbone, ImageModel) {
     'use strict';
 
     var ImagesCollection = Backbone.Collection.extend({
-        model: ImagesModel
+        model: ImageModel
     });
 
     return ImagesCollection;
 });
+

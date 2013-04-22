@@ -7,9 +7,11 @@ define([
     'use strict';
 
     var ImageModel = Backbone.Model.extend({
-        defaults:{
+        defaults: {
+            imageUrl: 'images/87.png'
         }
     });
 
     return ImageModel;
 });
+

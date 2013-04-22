@@ -13,16 +13,25 @@ require.config({
             ],
             exports: 'Backbone'
         },
+        'jquery-ui': {
+            exports: '$',
+            deps: ['jquery', 'bootstrap-dropdown']
+        },
     },
     paths: {
         jquery: '../components/jquery/jquery',
+        'jquery-ui': 'vendor/jquery-ui/js/jquery-ui-1.10.2.custom',
         backbone: '../components/backbone-amd/backbone',
         underscore: '../components/underscore-amd/underscore',
+        'bootstrap-dropdown': '../components/bootstrap/js/bootstrap-dropdown',
     }
 });
 
 require([
-    'backbone'
-], function (Backbone) {
+    'backbone',
+    'views/application-view'
+], function (Backbone, AppView) {
     Backbone.history.start();
+
+    var App = new AppView();
 });

@@ -10,10 +10,19 @@ define([
     'use strict';
 
     var ApplicationView = Backbone.View.extend({
-        template: JST['app/scripts/templates/application.ejs']
+        el: $('div.main'),
+        template: JST['app/scripts/templates/application.ejs'],
+        initialize: function (options) {
+        },
+        render: function () {
+            this.$el.html('');
+            console.log('karumba');
+            return this;
+        }
     });
 
     new TimeSlider();
 
     return ApplicationView;
 });
+

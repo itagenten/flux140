@@ -30,17 +30,21 @@ require.config({
 
 require([
     'backbone',
+    'routes/application-router',
     'models/application-model',
     'views/application-view',
-], function (Backbone, AppModel, AppView) {
+    'views/gallery-view',
+], function (Backbone, Router, AppModel, AppView, GalleryView) {
     Backbone.history.start();
 
     window.App = {
+        Router: new Router(),
         Models: {
             App: new AppModel()
         },
         Views: {
-            App: new AppView()
+            App: new AppView(),
+            Gallery: new GalleryView()
         },
         Collections: {
         },

@@ -28,26 +28,31 @@ require.config({
     }
 });
 
+
+/* Define our globals */
+function log (text) {
+    console.log(text);
+}
+// Application namespace.
+// Initialization happens lazily later.
+window.App = {
+    Models: {
+        App: null,
+        Gallery: null,
+    },
+    Views: {
+        App: null,
+        Gallery: null,
+    },
+    Collections: {
+    },
+};
+
 require([
     'backbone',
     'routes/application-router',
-    'models/application-model',
-    'views/application-view',
-    'views/gallery-view',
-], function (Backbone, Router, AppModel, AppView, GalleryView) {
+], function (Backbone, Router) {
+    window.App.Router = new Router();
     Backbone.history.start();
-
-    window.App = {
-        Router: new Router(),
-        Models: {
-            App: new AppModel()
-        },
-        Views: {
-            App: new AppView(),
-            Gallery: new GalleryView()
-        },
-        Collections: {
-        },
-    };
 });
 

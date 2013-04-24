@@ -1,6 +1,6 @@
 /* Time slider widget. */
 
-/*global define*/
+/*global define, log*/
 
 define([
     'jquery-ui',
@@ -13,10 +13,11 @@ define([
         id: 'timeSlider',
         initialize: function () {
             $('#timeSlider').slider();
+            log('Init: time-slider.');
         }
     });
 
-    console.log('matt... damon....');
+    log('Load: time-slider.');
 
     return TimeSliderView;
 });

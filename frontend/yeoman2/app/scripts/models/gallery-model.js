@@ -1,4 +1,4 @@
-/*global define*/
+/*global define,log*/
 
 define([
     'underscore',
@@ -13,6 +13,8 @@ define([
             imageStacks: new ImageStacksCollection()
         }
     });
+
+    log('Load: gallery-model.');
 
     return GalleryModel;
 });

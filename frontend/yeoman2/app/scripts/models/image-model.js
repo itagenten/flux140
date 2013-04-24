@@ -1,4 +1,4 @@
-/*global define*/
+/*global define,log*/
 
 define([
     'underscore',
@@ -11,6 +11,8 @@ define([
             imageUrl: 'images/87.png'
         }
     });
+
+    log('Load: image-model.');
 
     return ImageModel;
 });

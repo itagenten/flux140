@@ -250,7 +250,8 @@ module.exports = function (grunt) {
         },
         jst: {
             options: {
-                amd: true
+                amd: true,
+                prettify: true
             },
             compile: {
                 files: {

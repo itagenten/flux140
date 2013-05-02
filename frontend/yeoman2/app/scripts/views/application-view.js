@@ -14,11 +14,11 @@ define([
         el: $('div.main'),
         template: JST['app/scripts/templates/application.ejs'],
         model: window.App.Models.App || (window.App.Models.App = new AppModel()),
-        initialize: function (options) {
+        initialize: function () {
             log('Init: application-view');
         },
         render: function () {
-            this.$el.html('');
+            this.$el.html(this.template());
             log('Render: application-view.');
             return this;
         }

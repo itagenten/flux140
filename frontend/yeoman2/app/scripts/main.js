@@ -30,9 +30,11 @@ require.config({
 
 
 /* Define our globals */
-function log (text) {
-    console.log(text);
+function log(text) {
+    // performance.now is available in Chrome stable, Firefox 15+, and IE10.
+    console.log(window.performance.now() + ': ' + text);
 }
+log('Logging initialized.'); // To suppress "never used" linter warning.
 // Application namespace.
 // Initialization happens lazily later.
 window.App = {

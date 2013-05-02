@@ -30,8 +30,14 @@ require.config({
 
 
 /* Define our globals */
+// performance.now is available in Chrome stable, Firefox 15+, and IE10.
+if (!window.performance) {
+    // Opera, for example
+    window.performance = {
+        now: function () {return '';}
+    };
+}
 function log(text) {
-    // performance.now is available in Chrome stable, Firefox 15+, and IE10.
     console.log(window.performance.now() + ': ' + text);
 }
 log('Logging initialized.'); // To suppress "never used" linter warning.

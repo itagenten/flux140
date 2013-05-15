@@ -22,7 +22,8 @@ define([
                 this.template({
                     'src': this.model.get('images').at(
                         window.App.Models.App.get('pit')
-                            ).get('src')
+                            ).get('src'),
+                    'title': this.model.get('title')
                 })
             );
             return this;

@@ -20,7 +20,9 @@ define([
             // Getting 'ere.
             this.$el.html(
                 this.template({
-                    'src': this.model.get('images').at(0).get('src')
+                    'src': this.model.get('images').at(
+                        window.App.Models.App.get('pit')
+                            ).get('src')
                 })
             );
             return this;

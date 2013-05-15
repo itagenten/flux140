@@ -7,13 +7,17 @@ define([
 ], function (_, Backbone, GalleryModel) {
     'use strict';
 
+    log('Load: application-model.');
+
     var ApplicationModel = Backbone.Model.extend({
         defaults: {
-            gallery: new GalleryModel()
+            gallery: new GalleryModel(),
+            pit: 5  // Point In Time.
+        },
+        initialize: function () {
+            this.on('change:pit', function(){alert(this.get('pit'));}, this);
         }
     });
-
-    log('Load: application-model.');
 
     return ApplicationModel;
 });

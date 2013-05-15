@@ -26,7 +26,7 @@ define([
 
     log('Load: application-view.');
 
-    new TimeSlider();
+    ApplicationView.timeSliderView = new TimeSlider();
 
     return ApplicationView;
 });

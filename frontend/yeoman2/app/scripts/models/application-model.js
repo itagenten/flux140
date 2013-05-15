@@ -12,7 +12,7 @@ define([
     var ApplicationModel = Backbone.Model.extend({
         defaults: {
             gallery: new GalleryModel(),
-            pit: 5  // Point In Time.
+            pit: 0  // Point In Time.
         },
         initialize: function () {
             // this.on('change:pit', function () {

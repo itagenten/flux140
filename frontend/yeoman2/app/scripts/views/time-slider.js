@@ -23,12 +23,14 @@ define([
             log('Render: time-slider.');
 
             $('#timeSlider').slider({
+                value: window.App.Models.App.get('pit'),
                 min: 0,
                 max: 10,
                 change: this._changeHandler
             });
 
             // Bind mouse scroll wheel.
+            // Credits @see http://stackoverflow.com/questions/5722949/ui-slider-mousewheel/5723291#5723291
             $('#timeSlider').bind('mousewheel DOMMouseScroll', function (e) {
                 var delta = 0, element = $(this), value, oe;
                 oe = e.originalEvent; // for jQuery >=1.7

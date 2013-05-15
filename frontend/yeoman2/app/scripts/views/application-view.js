@@ -18,15 +18,16 @@ define([
             log('Init: application-view');
         },
         render: function () {
+            log('Render: application-view');
             this.$el.html(this.template());
-            log('Render: application-view.');
             return this;
         }
     });
 
     log('Load: application-view.');
 
-    ApplicationView.timeSliderView = new TimeSlider();
+    window.App.Views.timeSliderView = new TimeSlider();
+    window.App.Views.timeSliderView.render();
 
     return ApplicationView;
 });

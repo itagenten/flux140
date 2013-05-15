@@ -15,32 +15,33 @@ define([
         id: 'timeSlider',
         initialize: function () {
             log('Init: time-slider.');
-            // first render.
-            this.render();
         },
         _changeHandler: function(event, ui) {
             window.App.Models.App.set('pit', ui.value);
         },
         render: function () {
+            log('Render: time-slider.');
+
             $('#timeSlider').slider({
                 min: 0,
                 max: 10,
                 change: this._changeHandler
             });
 
+            // Bind mouse scroll wheel.
             $('#timeSlider').bind('mousewheel DOMMouseScroll', function (e) {
-                var delta = 0, element = $(this), value, result, oe;
+                var delta = 0, element = $(this), value, oe;
                 oe = e.originalEvent; // for jQuery >=1.7
                 value = element.slider('value');
 
                 if (oe.wheelDelta) {
-                    delta = -oe.wheelDelta;
+                    delta = oe.wheelDelta / -120;
                 }
                 if (oe.detail) {
-                    delta = oe.detail * 40;
+                    delta = oe.detail / 3;
                 }
 
-                value -= delta / 120;
+                value += delta;
                 element.slider('value', value);
                 return false;
             });

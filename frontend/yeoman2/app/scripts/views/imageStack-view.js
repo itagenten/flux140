@@ -28,7 +28,8 @@ define([
             return this;
         },
         updateSrc: function () {
-            this.$('img')[0].src = this.model.get('images').at(window.App.Models.App.get('pit')).get('src');
+            this.$('img')[0].src = this.model.get('images').at(
+                window.App.Models.App.get('pit')).get('src');
         }
     });
 

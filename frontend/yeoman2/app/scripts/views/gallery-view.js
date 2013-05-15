@@ -15,6 +15,13 @@ define([
         template: JST['app/scripts/templates/gallery.ejs'],
         model: window.App.Models.Gallery || (window.App.Models.Gallery = new GalleryModel()),
         imageStackViews: [],
+        _gotoPit: function () {
+            var pit = window.App.Models.App.get('pit');
+            // alert("@OOOO¡!¡!¡! " + pit);
+            this.imageStackViews.forEach(function(imageStackView) {
+                imageStackView.updateSrc();
+            });
+        },
         initialize: function (options) {
             log('Init: gallery-view.');
             console.log(options);
@@ -25,6 +32,8 @@ define([
                     new ImageStackView({model: element})
                 );
             });
+
+            window.App.Models.App.on('change:pit', this._gotoPit, this);
         },
         render: function () {
             log('Render: gallery-view.');

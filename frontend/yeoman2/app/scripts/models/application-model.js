@@ -15,7 +15,8 @@ define([
             pit: 5  // Point In Time.
         },
         initialize: function () {
-            this.on('change:pit', function(){alert(this.get('pit'));}, this);
+            // this.on('change:pit', function () {
+            //     alert(this.get('pit'));}, this);
         }
     });
 

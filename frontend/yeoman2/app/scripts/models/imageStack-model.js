@@ -9,7 +9,11 @@ define([
 
     var ImageStackModel = Backbone.Model.extend({
         defaults: {
-            images: new ImagesCollection()
+            browser: 'Firefox 3.6',
+            images: new ImagesCollection([
+                // A few images w/ default settings
+                {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+            ])
         }
     });
 

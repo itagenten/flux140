@@ -23,9 +23,12 @@ define([
         },
         gallery: function (build, browser) {
             if (!window.App.Views.Gallery) {
-                window.App.Views.Gallery = new GalleryView();
+                window.App.Views.Gallery = new GalleryView({
+                    'build': build,
+                    'browser': browser
+                });
             }
-            window.App.Views.Gallery.render(build, browser);
+            window.App.Views.Gallery.render();
         },
     });
 

@@ -8,7 +8,7 @@ define([
 
     var ImageModel = Backbone.Model.extend({
         defaults: {
-            imageUrl: 'images/87.png'
+            src: 'images/87.png'
         }
     });
 

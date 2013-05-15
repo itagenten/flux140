@@ -6,19 +6,37 @@ define([
     'backbone',
     'templates',
     'models/gallery-model',
-], function ($, _, Backbone, JST, GalleryModel) {
+    'views/imageStack-view'
+], function ($, _, Backbone, JST, GalleryModel, ImageStackView) {
     'use strict';
 
     var GalleryView = Backbone.View.extend({
         el: $('div.main'),
         template: JST['app/scripts/templates/gallery.ejs'],
         model: window.App.Models.Gallery || (window.App.Models.Gallery = new GalleryModel()),
-        initialize: function () {
+        imageStackViews: [],
+        initialize: function (options) {
             log('Init: gallery-view.');
+            console.log(options);
+
+            var that = this;
+            this.model.get('imageStacks').each(function(element) {
+                that.imageStackViews.push(
+                    new ImageStackView({model: element})
+                );
+            });
         },
         render: function () {
-            this.$el.html(this.template(this.model.attributes));
             log('Render: gallery-view.');
+            this.$el.html(this.template());
+
+            // Subviews.
+            var that = this;
+            this.imageStackViews.forEach(function(imageStackView) {
+                imageStackView.render();
+                that.$('.thumbnails').append(imageStackView.el);
+            });
+
             return this;
         }
     });

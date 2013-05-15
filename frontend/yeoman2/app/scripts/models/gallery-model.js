@@ -9,8 +9,8 @@ define([
 
     var GalleryModel = Backbone.Model.extend({
         defaults: {
-            browser: null,
-            imageStacks: new ImageStacksCollection()
+            browser: 'FF',
+            imageStacks: new ImageStacksCollection([{}, {}, {}])
         }
     });
 
@@ -18,3 +18,4 @@ define([
 
     return GalleryModel;
 });
+

@@ -5,3 +5,4 @@ dist
 app/components
 *.swp
 app/scripts/templates/compiled.js
+app/content/*

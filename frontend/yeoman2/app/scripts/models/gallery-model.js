@@ -31,7 +31,10 @@ define([
                     title: element.name,
                     images: new ImagesCollection(
                         _.map(element.contents, function(image) {
-                            return {src: 'content/' + element.name + '/' + image.name};
+                            return {
+                                pit: parseInt(image.name, 10),
+                                src: 'content/' + element.name + '/' + image.name,
+                            };
                         }))
                 });
             });

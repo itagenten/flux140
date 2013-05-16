@@ -28,9 +28,13 @@ define([
             );
             return this;
         },
-        updateSrc: function () {
-            this.$('img')[0].src = this.model.get('images').at(
-                window.App.Models.App.get('pit')).get('src');
+        updateSrc: function (pit) {
+            var img = this.model.get('images').findWhere({'pit': pit});
+            if (img) {
+                this.$('img')[0].src = img.get('src');
+            } else {
+                this.$('img')[0].src = 'images/void.gif';
+            }
         }
     });
 

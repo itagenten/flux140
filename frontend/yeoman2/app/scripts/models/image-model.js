@@ -8,6 +8,7 @@ define([
 
     var ImageModel = Backbone.Model.extend({
         defaults: {
+            pit: 0,
             src: 'images/87.png'
         }
     });

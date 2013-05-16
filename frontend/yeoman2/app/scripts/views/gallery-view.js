@@ -17,9 +17,10 @@ define([
         imageStackViews: [],
         _gotoPit: function () {
             var pit = window.App.Models.App.get('pit');
-            // alert("@OOOO¡!¡!¡! " + pit);
             this.imageStackViews.map(function(imageStackView) {
-                imageStackView.updateSrc();
+                setTimeout(function () {
+                    imageStackView.updateSrc(pit);
+                }, 0);
             });
         },
         initialize: function (options) {

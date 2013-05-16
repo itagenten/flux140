@@ -14,16 +14,25 @@ define([
         el: $('div.main'),
         template: JST['app/scripts/templates/application.ejs'],
         model: window.App.Models.App || (window.App.Models.App = new AppModel()),
-        _updateTextNav: function () {
-            $('#navbar-text-pit').val(window.App.Models.App.get('pit'));
+        _updateNavViews: function () {
+            var pit = window.App.Models.App.get('pit');
+            $('#navbar-text-pit').val(pit);
+            $('#timeSlider').slider('value', pit);
         },
         initialize: function () {
             log('Init: application-view');
-            window.App.Models.App.on('change:pit', this._updateTextNav, this);
+            window.App.Models.App.on('change:pit', this._updateNavViews, this);
             $('#navbar-text-pit').keypress(function(e) {
                 if (e.which === 13) { // 'Enter' button
-                    $('#timeSlider').slider('value', $(this).val());
+                    window.App.Models.App.set('pit', $(this.val()));
                 }
+            });
+            $('#playButton').click(function(e) {
+                e.preventDefault();
+                setInterval(function() {
+                    window.App.Models.App.set('pit',
+                        window.App.Models.App.get('pit') + 1);
+                }, 1000);
             });
         },
         render: function () {

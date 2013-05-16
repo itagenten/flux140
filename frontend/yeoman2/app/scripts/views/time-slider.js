@@ -25,7 +25,7 @@ define([
             $('#timeSlider').slider({
                 value: window.App.Models.App.get('pit'),
                 min: 0,
-                max: 9,
+                max: 400,
                 change: this._changeHandler
             });
 
@@ -33,7 +33,7 @@ define([
             // Credits @see http://stackoverflow.com/questions/5722949/ui-slider-mousewheel/5723291#5723291
             $('#timeSlider').bind('mousewheel DOMMouseScroll', function (e) {
                 var delta = 0, element = $(this), value, oe;
-                oe = e.originalEvent; // for jQuery >=1.7
+                oe = e.originalEvent;  // for jQuery >=1.7
                 value = element.slider('value');
 
                 if (oe.wheelDelta) {

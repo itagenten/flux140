@@ -22,6 +22,11 @@ define([
             window.App.Views.App.render();
         },
         gallery: function (build, browser) {
+            if (!window.App.Views.App) {
+                window.App.Views.App = new AppView();
+            }
+            window.App.Views.App.render();
+
             if (!window.App.Views.Gallery) {
                 window.App.Views.Gallery = new GalleryView({
                     'build': build,

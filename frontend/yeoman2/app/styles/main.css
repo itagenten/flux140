@@ -7,10 +7,6 @@ body {
     padding: 0 5%;
 }
 
-.navbar-slider {
-    margin: 13px 20px 0 20px;
-}
-
 .thumbnail {
     height: 210px;
     background-color: white;
@@ -18,5 +14,27 @@ body {
 
 .thumbnail > img {
     max-height: 100%;
+}
+
+.navbar-slider {
+    margin: 5px 20px 0 20px;
+}
+
+#navbar-text-pit {
+    float: left;
+    width: 32px;
+    margin: 2px 0 0 12px;
+    height: 17px;
+    text-align: center;
+}
+
+#timeSlider {
+    float: left;
+    width: 390px;
+    margin: 9px 0 0 16px;
+}
+
+#playButton {
+    margin-top: 0;
 }
 

@@ -25,7 +25,7 @@ define([
             $('#timeSlider').slider({
                 value: window.App.Models.App.get('pit'),
                 min: 0,
-                max: 10,
+                max: 9,
                 change: this._changeHandler
             });
 

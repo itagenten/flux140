@@ -27,10 +27,13 @@ define([
             console.log(options);
 
             var that = this;
-            this.model.get('imageStacks').each(function(element) {
-                that.imageStackViews.push(
-                    new ImageStackView({model: element})
-                );
+            this.model.on('change', function () {
+                that.model.get('imageStacks').each(function(element) {
+                    that.imageStackViews.push(
+                        new ImageStackView({model: element})
+                    );
+                });
+                that.render();
             });
 
             window.App.Models.App.on('change:pit', this._gotoPit, this);

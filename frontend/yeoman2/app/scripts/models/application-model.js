@@ -11,7 +11,7 @@ define([
 
     var ApplicationModel = Backbone.Model.extend({
         defaults: {
-            gallery: new GalleryModel(),
+            gallery: null,
             pit: 0  // Point In Time.
         },
         initialize: function () {

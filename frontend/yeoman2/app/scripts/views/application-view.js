@@ -34,6 +34,13 @@ define([
                         window.App.Models.App.get('pit') + 1);
                 }, 1000);
             });
+
+            window.App.Models.Gallery.on('change', function () {
+                $('#timeSlider').slider({
+                    min: window.App.Models.Gallery.get('minPit'),
+                    max: window.App.Models.Gallery.get('maxPit')
+                });
+            });
         },
         render: function () {
             log('Render: application-view');

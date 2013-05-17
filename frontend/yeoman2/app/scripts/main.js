@@ -58,8 +58,17 @@ window.App = {
 
 require([
     'backbone',
+    'views/application-view',
     'routes/application-router',
-], function (Backbone, Router) {
+], function (Backbone, AppView, Router) {
+
+    // Init main application view
+    if (!window.App.Views.App) {
+        window.App.Views.App = new AppView();
+    }
+    window.App.Views.App.render();
+
+    // Init router
     window.App.Router = new Router();
     Backbone.history.start();
 });

@@ -8,8 +8,13 @@ body {
 }
 
 .thumbnail {
-    height: 210px;
     background-color: white;
+}
+.thumbnails .thumbnail {
+    height: 210px;
+}
+.detail .thumbnail {
+    min-height: 400px;
 }
 
 .thumbnail > img {

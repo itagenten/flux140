@@ -24,7 +24,7 @@ define([
             window.App.Models.App.on('change:pit', this._updateNavViews, this);
             $('#navbar-text-pit').keypress(function(e) {
                 if (e.which === 13) { // 'Enter' button
-                    window.App.Models.App.set('pit', $(this.val()));
+                    window.App.Models.App.set('pit', e.currentTarget.value);
                 }
             });
             $('#playButton').click(function(e) {

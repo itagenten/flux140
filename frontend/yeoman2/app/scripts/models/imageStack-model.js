@@ -13,10 +13,10 @@ define([
             title: 'about_page',
             images: new ImagesCollection([
                 // A few images w/ default settings
-                {src:"0.png"},
-                {src:"1.png"},
-                {src:"2.png"},
-                {src:"3.png"},
+                {src: '0.png'},
+                {src: '1.png'},
+                {src: '2.png'},
+                {src: '3.png'},
                 {}, {}, {}, {}, {}, {}, {}, {}
             ])
         }
@@ -26,3 +26,4 @@ define([
 
     return ImageStackModel;
 });
+

@@ -18,6 +18,12 @@ define([
             maxPit: 10,  // newest screenshot set.
             imageStacks: new ImageStacksCollection()
         },
+        _setReady: function() {
+            // Fire event & set property after having loaded all content.
+            log('Ready: gallery-model.');
+            this.trigger('ready');
+            this.set('ready', true);
+        },
         initialize: function(options) {
             log('Init: gallery-model.');
             // TODO: Set the URL?
@@ -67,6 +73,8 @@ define([
             );
 
             this.set('imageStacks', imageStacks);
+
+            this._setReady();
         },
     });
 

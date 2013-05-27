@@ -28,14 +28,18 @@ define([
             console.log(options);
 
             var that = this;
-            this.model.on('change', function () {
+            var createSubviews = function () {
                 that.model.get('imageStacks').each(function(element) {
                     that.imageStackViews.push(
                         new ImageStackView({model: element})
                     );
                 });
                 that.render();
-            });
+            };
+            this.model.once('ready', createSubviews);
+            if (this.model.get('ready') === true) {
+                createSubviews();
+            }
 
             window.App.Models.App.on('change:pit', this._gotoPit, this);
         },

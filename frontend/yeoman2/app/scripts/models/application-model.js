@@ -12,6 +12,7 @@ define([
     var ApplicationModel = Backbone.Model.extend({
         defaults: {
             gallery: null,
+            browser: 'Firefox36',
             pit: 0  // Point In Time.
         },
         initialize: function () {

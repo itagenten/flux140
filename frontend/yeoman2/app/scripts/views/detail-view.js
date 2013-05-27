@@ -27,16 +27,21 @@ define([
             console.log(options);
 
             var that = this;
-            this.model.on('change', function () {
+            var createSubviews = function () {
                 var stackModel = that.model.get('imageStacks')
                                            .findWhere({'title': options.title});
                 that.imageStackView = new ImageStackView({
-                                            model: stackModel,
-                                            tagName: 'div',
-                                            className: '',
-                                            });
+                    model: stackModel,
+                    tagName: 'div',
+                    className: '',
+                    template: JST['app/scripts/templates/imageStack-detail.ejs'],
+                });
                 that.render();
-            });
+            };
+            this.model.once('ready', createSubviews);
+            if (this.model.get('ready') === true) {
+                createSubviews();
+            }
 
             window.App.Models.App.on('change:pit', this._gotoPit, this);
         },

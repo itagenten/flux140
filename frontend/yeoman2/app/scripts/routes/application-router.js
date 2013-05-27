@@ -35,6 +35,7 @@ define([
                     'browser': browser
                 });
             }
+            window.App.Views.Detail.render();
         }
     });
 

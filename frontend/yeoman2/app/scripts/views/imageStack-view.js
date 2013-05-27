@@ -9,12 +9,25 @@ define([
     'use strict';
 
     var ImageStackView = Backbone.View.extend({
-        template: JST['app/scripts/templates/imageStack.ejs'],
+        template: JST['app/scripts/templates/imageStack-gallery.ejs'],
         tagName: 'li',
         className: 'span3',
         model: null,
-        initialize: function () {
+        events: {
+            'click': function () {
+                log('click view');
+                window.App.Router.navigate(
+                    'detail/' + this.model.get('title') + '/' +
+                    window.App.Models.App.get('pit') + '/' +
+                    window.App.Models.App.get('browser'),
+                    {trigger: true});
+            }
+        },
+        initialize: function (options) {
             this.listenTo(this.model, 'change', this.render);
+            if (options.template) {
+                this.template = options.template;
+            }
         },
         render: function () {
             // Getting 'ere.

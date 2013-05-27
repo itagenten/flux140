@@ -31,16 +31,25 @@ require.config({
 
 /* Define our globals */
 // performance.now is available in Chrome stable, Firefox 15+, and IE10.
-if (!window.performance) {
-    // Opera, for example
-    window.performance = {
-        now: function () {return '';}
-    };
+// @see http://gent.ilcore.com/2012/06/better-timer-for-javascript.html
+window.performance = window.performance || {};
+window.performance.now = (function () {
+  return window.performance.now       ||
+         window.performance.mozNow    ||
+         window.performance.msNow     ||
+         window.performance.oNow      ||
+         window.performance.webkitNow ||
+         function () {return new Date().getTime() - window.performance.timing.navigationStart;};
+}());
+if (!window.performance.timing) {
+    window.performance.timing = {navigationStart: new Date().getTime()}; // For relative times when shimming.
 }
+
 function log(text) {
     console.log(window.performance.now() + ': ' + text);
 }
-log('Logging initialized.'); // To suppress "never used" linter warning.
+log('Logging initialized.'); // Suppress "never used" linter warning.
+
 // Application namespace.
 // Initialization happens lazily later.
 window.App = {

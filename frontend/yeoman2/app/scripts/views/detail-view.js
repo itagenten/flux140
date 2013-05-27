@@ -6,8 +6,8 @@ define([
     'backbone',
     'templates',
     'models/gallery-model',
-    'views/imageStack-view',
-], function ($, _, Backbone, JST, GalleryModel, ImageStackView) {
+    'views/imageStack-detail-view',
+], function ($, _, Backbone, JST, GalleryModel, ImageStackDetailView) {
     'use strict';
 
     var DetailView = Backbone.View.extend({
@@ -30,11 +30,8 @@ define([
             var createSubviews = function () {
                 var stackModel = that.model.get('imageStacks')
                                            .findWhere({'title': options.title});
-                that.imageStackView = new ImageStackView({
+                that.imageStackView = new ImageStackDetailView({
                     model: stackModel,
-                    tagName: 'div',
-                    className: '',
-                    template: JST['app/scripts/templates/imageStack-detail.ejs'],
                 });
                 that.render();
             };

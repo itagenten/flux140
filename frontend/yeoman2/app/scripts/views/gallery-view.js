@@ -6,8 +6,8 @@ define([
     'backbone',
     'templates',
     'models/gallery-model',
-    'views/imageStack-view'
-], function ($, _, Backbone, JST, GalleryModel, ImageStackView) {
+    'views/imageStack-gallery-view'
+], function ($, _, Backbone, JST, GalleryModel, ImageStackGalleryView) {
     'use strict';
 
     var GalleryView = Backbone.View.extend({
@@ -31,7 +31,7 @@ define([
             var createSubviews = function () {
                 that.model.get('imageStacks').each(function(element) {
                     that.imageStackViews.push(
-                        new ImageStackView({model: element})
+                        new ImageStackGalleryView({model: element})
                     );
                 });
                 that.render();

@@ -21,23 +21,27 @@ define([
         render: function () {
             this.$el.html(
                 this.template({
-                    'src': this.model.get('images').at(
-                        window.App.Models.App.get('pit')
-                            ).get('src'),
+                    'src': this._calcSrc(window.App.Models.App.get('pit')),
                     'title': this.model.get('title')
                 })
             );
             return this;
         },
-        updateSrc: function (pit) {
+        _calcSrc: function (pit) {
+            var ret;
             var img = this.model.get('images').findWhere({'pit': pit});
             if (img) {
-                this.$('img')[0].src = img.get('src');
+                ret = img.get('src');
             } else {
-                this.$('img')[0].src = 'images/void.gif';
+                ret = 'images/void.gif';
             }
+            return ret;
+        },
+        _updateDom: function (pit) {
+            this.$('img')[0].src = this._calcSrc(pit);
         }
     });
 
     return ImageStackView;
 });
+

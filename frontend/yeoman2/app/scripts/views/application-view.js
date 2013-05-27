@@ -20,7 +20,7 @@ define([
             $('#timeSlider').slider('value', pit);
         },
         initialize: function () {
-            log('Init: application-view');
+            log('Init: application-view.');
             window.App.Models.App.on('change:pit', this._updateNavViews, this);
             $('#navbar-text-pit').keypress(function(e) {
                 if (e.which === 13) { // 'Enter' button
@@ -38,7 +38,8 @@ define([
             window.App.Models.Gallery.on('change', function () {
                 $('#timeSlider').slider({
                     min: window.App.Models.Gallery.get('minPit'),
-                    max: window.App.Models.Gallery.get('maxPit')
+                    max: window.App.Models.Gallery.get('maxPit'),
+                    value: window.App.Models.Gallery.get('maxPit')
                 });
             });
         },

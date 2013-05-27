@@ -19,13 +19,12 @@ define([
             var pit = window.App.Models.App.get('pit');
             this.imageStackViews.map(function(imageStackView) {
                 setTimeout(function () {
-                    imageStackView.updateSrc(pit);
+                    imageStackView._updateDom(pit);
                 }, 0);
             });
         },
         initialize: function (options) {
             log('Init: gallery-view.');
-            console.log(options);
 
             var that = this;
             var createSubviews = function () {
@@ -49,6 +48,7 @@ define([
 
             // Subviews.
             var that = this;
+            // this.$('.thumbnails').empty();
             this.imageStackViews.forEach(function(imageStackView) {
                 imageStackView.render();
                 that.$('.thumbnails').append(imageStackView.el);

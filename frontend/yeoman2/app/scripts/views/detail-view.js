@@ -19,12 +19,11 @@ define([
             var pit = window.App.Models.App.get('pit');
             var that = this;
             setTimeout(function () {
-                that.imageStackView.updateSrc(pit);
+                that.imageStackView._updateDom(pit);
             }, 0);
         },
         initialize: function (options) {
             log('Init: detail-view.');
-            console.log(options);
 
             var that = this;
             var createSubviews = function () {
@@ -47,7 +46,7 @@ define([
             this.$el.html(this.template());
 
             this.imageStackView.render();
-            this.$('.detail').append(this.imageStackView.el);
+            this.$('.detail').html(this.imageStackView.el);
 
             return this;
         }

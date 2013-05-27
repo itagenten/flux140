@@ -9,6 +9,7 @@ body {
 
 .thumbnail {
     background-color: white;
+    cursor: pointer;
 }
 .thumbnails .thumbnail {
     height: 210px;

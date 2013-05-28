@@ -21,6 +21,7 @@ define([
         },
         initialize: function () {
             log('Init: application-view.');
+
             this.listenTo(window.App.Models.App, 'change:pit', this._updateNavViews);
             $('#navbar-text-pit').keypress(function(e) {
                 if (e.which === 13) { // 'Enter' button

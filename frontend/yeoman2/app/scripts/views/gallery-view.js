@@ -45,12 +45,12 @@ define([
                 }
                 that.render();
             };
-            this.model.once('ready', createSubviews);
+            this.listenToOnce(this.model, 'ready', createSubviews);
             if (this.model.get('ready') === true) {
                 createSubviews();
             }
 
-            window.App.Models.App.on('change:pit', this._gotoPit, this);
+            this.listenTo(window.App.Models.App, 'change:pit', this._gotoPit);
         },
         render: function () {
             log('Render: gallery-view.');
@@ -60,7 +60,6 @@ define([
 
             // Subviews.
             var that = this;
-            // this.$('.thumbnails').empty();
             this.imageStackViews.forEach(function(imageStackView) {
                 imageStackView.render();
                 that.$('.thumbnails').append(imageStackView.el);

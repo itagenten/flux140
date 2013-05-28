@@ -12,7 +12,13 @@ define([
 
         navigate: function () {
             log('Navigate: ' + arguments[0]);
+            // Dispose of old view, if any:
             if (window.App.Views.current) {
+                if (window.App.Views.current.destroy) {
+                    window.App.Views.current.destroy();
+                }
+                window.App.Views.current.stopListening();
+                window.App.Views.current.undelegateEvents(); // TODO: Not sure if this is needed.
                 window.App.Views.current.remove();
             }
             // Call original navigate() function:

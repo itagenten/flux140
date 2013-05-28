@@ -21,7 +21,7 @@ define([
         },
         initialize: function () {
             log('Init: application-view.');
-            window.App.Models.App.on('change:pit', this._updateNavViews, this);
+            this.listenTo(window.App.Models.App, 'change:pit', this._updateNavViews);
             $('#navbar-text-pit').keypress(function(e) {
                 if (e.which === 13) { // 'Enter' button
                     window.App.Models.App.set('pit', e.currentTarget.value);
@@ -35,7 +35,7 @@ define([
                 }, 1000);
             });
 
-            window.App.Models.Gallery.on('change', function () {
+            this.listenTo(window.App.Models.Gallery, 'change', function () {
                 $('#timeSlider').slider({
                     min: window.App.Models.Gallery.get('minPit'),
                     max: window.App.Models.Gallery.get('maxPit'),

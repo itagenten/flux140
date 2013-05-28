@@ -13,12 +13,9 @@ define([
         defaults: {
             browser: 'Firefox36',
             pit: 0  // Point In Time.
-        },
-        initialize: function () {
-            // this.on('change:pit', function () {
-            //     alert(this.get('pit'));}, this);
         }
     });
 
     return ApplicationModel;
 });
+

@@ -34,12 +34,12 @@ define([
                 });
                 that.render();
             };
-            this.model.once('ready', createSubviews);
+            this.listenToOnce(this.model, 'ready', createSubviews);
             if (this.model.get('ready') === true) {
                 createSubviews();
             }
 
-            window.App.Models.App.on('change:pit', this._gotoPit, this);
+            this.listenTo(window.App.Models.App, 'change:pit', this._gotoPit);
         },
         render: function () {
             log('Render: detail-view.');
@@ -51,6 +51,9 @@ define([
             this.$('.detail').html(this.imageStackView.el);
 
             return this;
+        },
+        destroy: function () {
+            this.imageStackView.remove();
         }
     });
 

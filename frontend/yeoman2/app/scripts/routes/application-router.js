@@ -12,6 +12,9 @@ define([
 
         navigate: function () {
             log('Navigate: ' + arguments[0]);
+            if (window.App.Views.current) {
+                window.App.Views.current.remove();
+            }
             // Call original navigate() function:
             Backbone.history.navigate.apply(Backbone.history, arguments);
         },
@@ -25,29 +28,20 @@ define([
         home: function () {
         },
         gallery: function (build, browser) {
-            if (window.App.Views.Gallery) {
-                window.App.Views.Gallery.$el.empty();
-                window.App.Views.Gallery.undelegateEvents();
-            }
-            window.App.Views.Gallery = new GalleryView({
+            window.App.Views.current = new GalleryView({
                 'build': build,
                 'browser': browser
                 });
-            // window.App.Views.Gallery.render();
         },
         detail: function (title, build, browser) {
-            if (window.App.Views.Detail) {
-                window.App.Views.Detail.$el.empty();
-                window.App.Views.Detail.undelegateEvents();
-            }
-            window.App.Views.Detail = new DetailView({
+            window.App.Views.current = new DetailView({
                 'title': title,
                 'build': build,
                 'browser': browser
                 });
-            // window.App.Views.Detail.render();
         }
     });
 
     return ApplicationRouter;
 });
+

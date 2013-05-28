@@ -28,11 +28,21 @@ define([
 
             var that = this;
             var createSubviews = function () {
-                that.model.get('imageStacks').each(function(element) {
-                    that.imageStackViews.push(
-                        new ImageStackGalleryView({model: element})
-                    );
-                });
+                // TODO: Adding the views unconditionally leads to having
+                // more and more SubViews. This has a 'class variable'
+                // feeling to it instead of an instace variable. Why?
+                // TODO: Find out! ~ FS 2013-05-28
+                if (that.imageStackViews.length === 0) {
+                    that.model.get('imageStacks').each(function(element) {
+                        that.imageStackViews.push(
+                            new ImageStackGalleryView({model: element})
+                        );
+                    });
+                } else {
+                    that.imageStackViews.forEach(function(element) {
+                        element.delegateEvents();
+                    });
+                }
                 that.render();
             };
             this.model.once('ready', createSubviews);
@@ -44,6 +54,8 @@ define([
         },
         render: function () {
             log('Render: gallery-view.');
+            this.$el.html('<div class="view" />');
+            this.setElement(this.$('.view'));
             this.$el.html(this.template());
 
             // Subviews.

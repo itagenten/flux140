@@ -43,6 +43,8 @@ define([
         },
         render: function () {
             log('Render: detail-view.');
+            this.$el.html('<div class="view" />');
+            this.setElement(this.$('.view'));
             this.$el.html(this.template());
 
             this.imageStackView.render();

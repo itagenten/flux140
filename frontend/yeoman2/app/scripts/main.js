@@ -32,7 +32,9 @@ require.config({
 /* Define our globals */
 // performance.now is available in Chrome stable, Firefox 15+, and IE10.
 // @see http://gent.ilcore.com/2012/06/better-timer-for-javascript.html
-window.performance = window.performance || {};
+if (!window.performance) {
+    window.performance = {};
+}
 window.performance.now = (function () {
   return window.performance.now       ||
          window.performance.mozNow    ||

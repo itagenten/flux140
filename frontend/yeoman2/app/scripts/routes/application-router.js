@@ -32,6 +32,7 @@ define([
         },
 
         home: function () {
+            this.navigate('gallery/100/ie7', {trigger: true});
         },
         gallery: function (build, browser) {
             window.App.Views.current = new GalleryView({

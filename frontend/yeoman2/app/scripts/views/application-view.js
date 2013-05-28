@@ -22,6 +22,8 @@ define([
         initialize: function () {
             log('Init: application-view.');
 
+            window.App.Views.timeSliderView = new TimeSlider();
+
             this.listenTo(window.App.Models.App, 'change:pit', this._updateNavViews);
             $('#navbar-text-pit').keypress(function(e) {
                 if (e.which === 13) { // 'Enter' button
@@ -47,14 +49,14 @@ define([
         render: function () {
             log('Render: application-view');
             this.$el.html(this.template());
+
+            window.App.Views.timeSliderView.render();
+
             return this;
         }
     });
 
     log('Load: application-view.');
-
-    window.App.Views.timeSliderView = new TimeSlider();
-    window.App.Views.timeSliderView.render();
 
     return ApplicationView;
 });

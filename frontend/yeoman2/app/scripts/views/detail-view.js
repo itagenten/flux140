@@ -53,6 +53,7 @@ define([
             return this;
         },
         destroy: function () {
+            log('Destroy: detail-view.');
             this.imageStackView.remove();
         }
     });

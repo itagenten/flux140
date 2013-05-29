@@ -7,18 +7,18 @@ body {
     padding: 0 5%;
 }
 
-.thumbnail {
+.imagestack {
     background-color: white;
     cursor: pointer;
 }
 .thumbnails .thumbnail {
-    height: 210px;
+    height: 200px;
 }
-.detail .thumbnail {
+.detail .imagestack {
     min-height: 400px;
 }
 
-.thumbnail > img {
+.thumbnails .thumbnail > img {
     max-height: 100%;
 }
 

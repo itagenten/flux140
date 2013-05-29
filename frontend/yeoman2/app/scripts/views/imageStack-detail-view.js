@@ -12,7 +12,7 @@ define([
     var ImageStackDetailView = ImageStackView.extend({
         template: JST['app/scripts/templates/imageStack-detail.ejs'],
         tagName: 'div',
-        className: '',
+        className: 'detail',
         events: {
             'click': function () {
                 // Navigate to gallery view.

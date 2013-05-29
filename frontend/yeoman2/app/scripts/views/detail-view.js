@@ -12,7 +12,7 @@ define([
 
     var DetailView = Backbone.View.extend({
         el: $('div.main'),
-        template: JST['app/scripts/templates/detail.ejs'],
+        // template: JST['app/scripts/templates/detail.ejs'],
         model: window.App.Models.Gallery || (window.App.Models.Gallery = new GalleryModel()),
         imageStackView: null,
         _gotoPit: function () {
@@ -43,12 +43,13 @@ define([
         },
         render: function () {
             log('Render: detail-view.');
+
+            // Add own container that can later be remove()d with the view.
             this.$el.html('<div class="view" />');
             this.setElement(this.$('.view'));
-            this.$el.html(this.template());
 
             this.imageStackView.render();
-            this.$('.detail').html(this.imageStackView.el);
+            this.$el.html(this.imageStackView.el);
 
             return this;
         },

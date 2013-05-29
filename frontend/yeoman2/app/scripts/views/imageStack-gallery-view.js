@@ -16,6 +16,7 @@ define([
         events: {
             'click': function () {
                 // Navigate to detail view.
+                // TODO: Route calculation code is duplicated in detail-view.js:calcUrl
                 window.App.Router.navigate(
                     'detail/' + this.model.get('title') + '/' +
                     window.App.Models.App.get('pit') + '/' +

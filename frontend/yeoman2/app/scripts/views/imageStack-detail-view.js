@@ -16,6 +16,7 @@ define([
         events: {
             'click': function () {
                 // Navigate to gallery view.
+                // TODO: Route calculation code is duplicated in gallery-view.js:calcUrl
                 window.App.Router.navigate(
                     'gallery/' +
                     window.App.Models.App.get('pit') + '/' +

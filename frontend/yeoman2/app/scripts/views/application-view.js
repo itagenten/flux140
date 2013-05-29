@@ -18,6 +18,8 @@ define([
             var pit = window.App.Models.App.get('pit');
             $('#navbar-text-pit').val(pit);
             $('#timeSlider').slider('value', pit);
+            Backbone.history.navigate(window.App.Views.current.calcUrl(),
+                                    {trigger: false, replace: true});
         },
         initialize: function () {
             log('Init: application-view.');

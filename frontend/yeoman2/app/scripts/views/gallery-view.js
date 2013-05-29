@@ -66,6 +66,11 @@ define([
             });
 
             return this;
+        },
+        calcUrl: function () {
+            return 'gallery/' +
+                    window.App.Models.App.get('pit') + '/' +
+                    window.App.Models.App.get('browser');
         }
     });
 

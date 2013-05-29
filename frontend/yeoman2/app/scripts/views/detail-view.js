@@ -14,6 +14,7 @@ define([
         el: $('div.main'),
         // template: JST['app/scripts/templates/detail.ejs'],
         model: window.App.Models.Gallery || (window.App.Models.Gallery = new GalleryModel()),
+        title: "", // Title of current imageStack
         imageStackView: null,
         _gotoPit: function () {
             var pit = window.App.Models.App.get('pit');
@@ -24,6 +25,9 @@ define([
         },
         initialize: function (options) {
             log('Init: detail-view.');
+
+            // Used in calcUrl() below only so far.
+            this.title = options.title;
 
             var that = this;
             var createSubviews = function () {
@@ -56,6 +60,11 @@ define([
         destroy: function () {
             log('Destroy: detail-view.');
             this.imageStackView.remove();
+        },
+        calcUrl: function () {
+            return 'detail/' + this.title + '/' +
+                    window.App.Models.App.get('pit') + '/' +
+                    window.App.Models.App.get('browser');
         }
     });
 
@@ -63,5 +72,4 @@ define([
 
     return DetailView;
 });
-
 

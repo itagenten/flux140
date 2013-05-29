@@ -43,8 +43,7 @@ define([
             this.listenTo(window.App.Models.Gallery, 'change', function () {
                 $('#timeSlider').slider({
                     min: window.App.Models.Gallery.get('minPit'),
-                    max: window.App.Models.Gallery.get('maxPit'),
-                    value: window.App.Models.Gallery.get('maxPit')
+                    max: window.App.Models.Gallery.get('maxPit')
                 });
             });
         },

@@ -27,25 +27,41 @@ define([
 
         routes: {
             '': 'home',
-            'gallery/:build/:browser': 'gallery',
-            'detail/:title/:build/:browser': 'detail'
+            'gallery/:pit/:browser': 'gallery',
+            'detail/:title/:pit/:browser': 'detail'
         },
 
         home: function () {
-            this.navigate('gallery/100/ie7', {trigger: true});
+            // Open latest gallery page when ready (~= JSON has been parsed).
+            var that = this;
+            this.listenToOnce(window.App.Models.Gallery, 'ready',
+                function () {
+                    setTimeout(function () {
+                        that.navigate('gallery/' +
+                            window.App.Models.Gallery.get('maxPit') +
+                            '/default', {trigger: true});
+                    }, 0);
+                }
+            );
         },
-        gallery: function (build, browser) {
+        gallery: function (pit, browser) {
             window.App.Views.current = new GalleryView({
-                'build': build,
+                'pit': pit,
                 'browser': browser
                 });
+            if (pit) {
+                window.App.Models.App.set('pit', parseInt(pit, 10));
+            }
         },
-        detail: function (title, build, browser) {
+        detail: function (title, pit, browser) {
             window.App.Views.current = new DetailView({
                 'title': title,
-                'build': build,
+                'pit': pit,
                 'browser': browser
                 });
+            if (pit) {
+                window.App.Models.App.set('pit', parseInt(pit, 10));
+            }
         }
     });
 

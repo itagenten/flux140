@@ -25,7 +25,7 @@ define([
             $('#timeSlider').slider({
                 value: window.App.Models.App.get('pit'),
                 min: 0,
-                max: 400,
+                max: 900000, // A value < maxPit will bugg the 'home' route ~ FS 2013-05-29
                 change: this._changeHandler
             });
 

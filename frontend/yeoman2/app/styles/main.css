@@ -20,6 +20,12 @@ body {
 
 .thumbnails .thumbnail > img {
     max-height: 100%;
+    /* Tell browsers we want the fast scaling method which doesn't flicker (in Chrome). */
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    -ms-interpolation-mode: nearest-neighbor;
 }
 
 .navbar-slider {

@@ -65,7 +65,6 @@ define([
                     );
                 }
             );
-
             this.listenTo(window.App.Models.App,
                 'change:browser', function(model, value, options) {
                     $('#browsers .dropdown-toggle').html(

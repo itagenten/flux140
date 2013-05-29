@@ -11,7 +11,8 @@ define([
 
     var ApplicationModel = Backbone.Model.extend({
         defaults: {
-            browser: 'Firefox36',
+            browser: '',    // Set by the gallery model on load, smells
+            browsers: [],   // like an abstraction violation ~ FS 2013-05-29
             pit: 0  // Point In Time.
         }
     });

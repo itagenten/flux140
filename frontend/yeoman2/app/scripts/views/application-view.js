@@ -11,9 +11,16 @@ define([
     'use strict';
 
     var ApplicationView = Backbone.View.extend({
-        el: $('div.main'),
+        el: $('div.navbar'),
         template: JST['app/scripts/templates/application.ejs'],
         model: window.App.Models.App || (window.App.Models.App = new AppModel()),
+        events: {
+            'click #browsers .dropdown-menu a': function(eventObject) {
+                window.App.Models.App.set('browser',
+                    eventObject.currentTarget.innerText);
+                eventObject.preventDefault();
+            }
+        },
         _updateNavViews: function () {
             var pit = window.App.Models.App.get('pit');
             $('#navbar-text-pit').val(pit);
@@ -40,16 +47,35 @@ define([
                 }, 1000);
             });
 
-            this.listenTo(window.App.Models.Gallery, 'change', function () {
-                $('#timeSlider').slider({
-                    min: window.App.Models.Gallery.get('minPit'),
-                    max: window.App.Models.Gallery.get('maxPit')
-                });
-            });
+            this.listenToOnce(window.App.Models.Gallery,
+                'change:minPit, change:maxPit', function () {
+                    $('#timeSlider').slider({
+                        min: window.App.Models.Gallery.get('minPit'),
+                        max: window.App.Models.Gallery.get('maxPit')
+                    });
+                }
+            );
+
+            this.listenToOnce(window.App.Models.App,
+                'change:browsers', function (model, value, options) {
+                    $('#browsers .dropdown-menu').html(
+                        _.map(value, function (v) {
+                            return '<li><a href="#">' + v + '</a></li>';
+                        })
+                    );
+                }
+            );
+
+            this.listenTo(window.App.Models.App,
+                'change:browser', function(model, value, options) {
+                    $('#browsers .dropdown-toggle').html(
+                        value + ' <b class="caret"></b>');
+                }
+            );
         },
         render: function () {
             log('Render: application-view');
-            this.$el.html(this.template());
+            $('div.main').html(this.template());
 
             window.App.Views.timeSliderView.render();
 

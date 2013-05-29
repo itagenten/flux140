@@ -31,10 +31,22 @@ define([
         },
         parse: function(response, options) {
             log('Parse: gallery-model.');
+            options = options || {};
+
+            // What browsers do we have?
+            var browsers = _.pluck(
+                _.where(response[0].contents, {'type': 'directory'}),
+                'name');
+            window.App.Models.App.set('browsers', browsers);
+
+            // If no browser is given, choose the first one in the list.
+            if (!options.browser) {
+                options.browser = browsers[0];
+                window.App.Models.App.set('browser', browsers[0]);
+            }
 
             var imageStacks = new ImageStacksCollection();
-
-            _.forEach(response[0].contents, function(element) {
+            _.forEach(_.findWhere(response[0].contents, {'name': options.browser}).contents, function(element) {
                 if (element.type !== 'directory') {
                     return;
                 }
@@ -44,7 +56,7 @@ define([
                         _.map(element.contents, function(image) {
                             return {
                                 pit: parseInt(image.name, 10),
-                                src: 'content/' + element.name + '/' + image.name,
+                                src: 'content/Firefox/' + element.name + '/' + image.name,
                             };
                         }))
                 });

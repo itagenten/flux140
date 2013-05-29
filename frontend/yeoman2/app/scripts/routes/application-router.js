@@ -45,22 +45,19 @@ define([
             );
         },
         gallery: function (pit, browser) {
-            window.App.Views.current = new GalleryView({
-                'pit': pit,
-                'browser': browser
-                });
-            if (pit) {
-                window.App.Models.App.set('pit', parseInt(pit, 10));
+            window.App.Views.current = new GalleryView();
+            window.App.Models.App.set('pit', parseInt(pit, 10));
+            if (browser !== 'default') {
+                window.App.Models.App.set('browser', browser);
             }
         },
         detail: function (title, pit, browser) {
             window.App.Views.current = new DetailView({
                 'title': title,
-                'pit': pit,
-                'browser': browser
-                });
-            if (pit) {
-                window.App.Models.App.set('pit', parseInt(pit, 10));
+            });
+            window.App.Models.App.set('pit', parseInt(pit, 10));
+            if (browser !== 'default') {
+                window.App.Models.App.set('browser', browser);
             }
         }
     });

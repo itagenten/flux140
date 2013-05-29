@@ -23,31 +23,22 @@ define([
                 }, 0);
             });
         },
+        _createSubviews: function () {
+            this.imageStackViews = [];
+            var that = this;
+            this.model.get('imageStacks').each(function(element) {
+                that.imageStackViews.push(
+                    new ImageStackGalleryView({model: element})
+                );
+            });
+            this.render();
+        },
         initialize: function (options) {
             log('Init: gallery-view.');
 
-            var that = this;
-            var createSubviews = function () {
-                // TODO: Adding the views unconditionally leads to having
-                // more and more SubViews. This has a 'class variable'
-                // feeling to it instead of an instace variable. Why?
-                // TODO: Find out! ~ FS 2013-05-28
-                if (that.imageStackViews.length === 0) {
-                    that.model.get('imageStacks').each(function(element) {
-                        that.imageStackViews.push(
-                            new ImageStackGalleryView({model: element})
-                        );
-                    });
-                } else {
-                    that.imageStackViews.forEach(function(element) {
-                        element.delegateEvents();
-                    });
-                }
-                that.render();
-            };
-            this.listenToOnce(this.model, 'ready', createSubviews);
+            this.listenTo(this.model, 'ready', this._createSubviews);
             if (this.model.get('ready') === true) {
-                createSubviews();
+                this._createSubviews();
             }
 
             this.listenTo(window.App.Models.App, 'change:pit', this._gotoPit);
@@ -59,6 +50,7 @@ define([
             this.$el.html(this.template());
 
             // Subviews.
+            this.$('.thumbnails').empty();
             var that = this;
             this.imageStackViews.forEach(function(imageStackView) {
                 imageStackView.render();

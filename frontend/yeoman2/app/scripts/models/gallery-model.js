@@ -12,8 +12,9 @@ define([
 
     var GalleryModel = Backbone.Model.extend({
         url: 'content/tree.json',
+        response: null, // Container for JSON response
         defaults: {
-            browser: 'FF',
+            browser: '',
             minPit: 0,   // Oldest and...
             maxPit: 10,  // newest screenshot set.
             imageStacks: new ImageStacksCollection()
@@ -27,11 +28,15 @@ define([
         initialize: function(options) {
             log('Init: gallery-model.');
             // TODO: Set the URL?
+
+            this.listenTo(window.App.Models.App,
+                'change:browser', this._parseBrowserToImageStacksCollection);
+
             this.fetch();
         },
         parse: function(response, options) {
             log('Parse: gallery-model.');
-            options = options || {};
+            this.response = response;
 
             // What browsers do we have?
             var browsers = _.pluck(
@@ -39,14 +44,29 @@ define([
                 'name');
             window.App.Models.App.set('browsers', browsers);
 
-            // If no browser is given, choose the first one in the list.
-            if (!options.browser) {
-                options.browser = browsers[0];
-                window.App.Models.App.set('browser', browsers[0]);
+            // If we haven't parsed any collection so far: Do it now
+            if (!this.get('ready')) {
+                if (window.App.Models.App.get('browser') === '') {
+                    // If no browser is given, choose the first one in the list.
+                    window.App.Models.App.set('browser', browsers[0]);
+                } else {
+                    this._parseBrowserToImageStacksCollection();
+                }
             }
-
+        },
+        _parseBrowserToImageStacksCollection: function() {
+            if (!this.response) {
+                // If the router calls us before loading is finished, abort.
+                // The code at the end of this.parse() will call us when
+                // loading is done.
+                return;
+            }
+            // TODO: Check if the requested browser exists.
+            var browser = window.App.Models.App.get('browser');
+            this.set('browser', browser);
+            log('_parseBrowserToImageStacksCollection: ' + browser + '.');
             var imageStacks = new ImageStacksCollection();
-            _.forEach(_.findWhere(response[0].contents, {'name': options.browser}).contents, function(element) {
+            _.forEach(_.findWhere(this.response[0].contents, {'name': browser}).contents, function(element) {
                 if (element.type !== 'directory') {
                     return;
                 }

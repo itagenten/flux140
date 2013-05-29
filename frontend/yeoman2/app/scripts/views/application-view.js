@@ -25,15 +25,20 @@ define([
             var pit = window.App.Models.App.get('pit');
             $('#navbar-text-pit').val(pit);
             $('#timeSlider').slider('value', pit);
-            Backbone.history.navigate(window.App.Views.current.calcUrl(),
-                                    {trigger: false, replace: true});
+            if (window.App.Views.current) {
+                Backbone.history.navigate(
+                    window.App.Views.current.calcUrl(),
+                    {trigger: false, replace: true}
+                );
+            }
         },
         initialize: function () {
             log('Init: application-view.');
 
             window.App.Views.timeSliderView = new TimeSlider();
 
-            this.listenTo(window.App.Models.App, 'change:pit', this._updateNavViews);
+            this.listenTo(window.App.Models.App,
+                'change', this._updateNavViews);
             $('#navbar-text-pit').keypress(function(e) {
                 if (e.which === 13) { // 'Enter' button
                     window.App.Models.App.set('pit', e.currentTarget.value);
@@ -47,7 +52,7 @@ define([
                 }, 1000);
             });
 
-            this.listenToOnce(window.App.Models.Gallery,
+            this.listenTo(window.App.Models.Gallery,
                 'change:minPit, change:maxPit', function () {
                     $('#timeSlider').slider({
                         min: window.App.Models.Gallery.get('minPit'),
@@ -73,7 +78,7 @@ define([
             );
         },
         render: function () {
-            log('Render: application-view');
+            log('Render: application-view.');
             $('div.main').html(this.template());
 
             window.App.Views.timeSliderView.render();

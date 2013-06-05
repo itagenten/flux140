@@ -46,7 +46,40 @@ body {
     margin: 9px 0 0 16px;
 }
 
-#playButton {
-    margin-top: 0;
+
+/* KnobKnob and its overrides */
+#jogWheel {
+    float: left;
+    margin: 0 8px 0 0;
+    width: 28px;
+    height: 28px;
 }
+
+#jogWheel .knob,
+#jogWheel .knob .top,
+#jogWheel .knob .base {
+    width: 28px;
+    height: 28px;
+}
+
+#jogWheel .knob .top {
+    background-size: 28px 28px;
+    opacity: 0.7;
+}
+#jogWheel .knob .top:hover {
+    opacity: 1.0;
+}
+
+#jogWheel .knob .base {
+    box-shadow: 1px 2px 0 #4a5056, 2px 4px 8px #333;
+    /* opacity: 0.8; */
+}
+
+#jogWheel .knob .top:after {
+    width: 5px;
+    height: 5px;
+    margin-top: 6px;
+    left: 11px;
+}
+/* End KnobKnob and its overrides */
 

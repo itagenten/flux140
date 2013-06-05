@@ -6,8 +6,9 @@ define([
     'backbone',
     'templates',
     'views/time-slider',
+    'views/jog-wheel',
     'models/application-model',
-], function ($, _, Backbone, JST, TimeSlider, AppModel) {
+], function ($, _, Backbone, JST, TimeSlider, JogWheel, AppModel) {
     'use strict';
 
     var ApplicationView = Backbone.View.extend({
@@ -35,7 +36,8 @@ define([
         initialize: function () {
             log('Init: application-view.');
 
-            window.App.Views.timeSliderView = new TimeSlider();
+            window.App.Views.TimeSlider = new TimeSlider();
+            window.App.Views.JogWheel = new JogWheel();
 
             this.listenTo(window.App.Models.App,
                 'change', this._updateNavViews);
@@ -81,7 +83,8 @@ define([
             log('Render: application-view.');
             $('div.main').html(this.template());
 
-            window.App.Views.timeSliderView.render();
+            window.App.Views.TimeSlider.render();
+            window.App.Views.JogWheel.render();
 
             return this;
         }

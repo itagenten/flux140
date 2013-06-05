@@ -68,8 +68,8 @@ window.App = {
         App: null,
         Gallery: null,
     },
-    Collections: {
-    },
+    Collections: {},
+    Helpers: {}
 };
 
 require([

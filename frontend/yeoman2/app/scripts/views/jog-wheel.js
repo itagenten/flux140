@@ -16,6 +16,10 @@ define([
         id: 'jogWheel',
         initialize: function () {
             log('Init: jog-wheel.');
+
+            window.App.Helpers.Sign = function(x) {
+                return x ? x < 0 ? -1 : 1 : 0;
+            };
         },
         render: function () {
             log('Render: jog-wheel.');
@@ -26,13 +30,38 @@ define([
                 turn : function(ratio){
                     // Do what you want here. Ratio moves from 0 to 1
                     // relative to the knob rotation. 0 - off, 1 - max
-                    window.App.Views.JogWheel.ratio = ratio - 0.5;
+                    var step = window.App.Views.JogWheel.step =
+                                Math.round(1000 * (ratio - 0.5)) / 1000;
+
+                    if (Math.abs(step) > 0.05) {
+                        log('Turn: jog-wheel. Step: ' + step);
+                        if (window.App.Views.JogWheel.interval) {
+                            window.clearInterval(window.App.Views.JogWheel.interval);
+                        }
+                        window.App.Views.JogWheel.interval = window.setInterval(function() {
+                            window.App.Models.App.set('pit',
+                                window.App.Models.App.get('pit') +
+                                    window.App.Helpers.Sign(
+                                        window.App.Views.JogWheel.step));
+                            log('Tick: jog-wheel.');
+                        }, 100 / Math.abs(step));
+
+                        $('#jogWheel .knob .base').attr('style',
+                            'box-shadow: 1px 2px 0 #4a5056, 2px 4px 8px #36F;');
+
+                    } else {
+                        log('Stop: jog-wheel. Step: ' + step);
+                        if (window.App.Views.JogWheel.interval) {
+                            window.clearInterval(window.App.Views.JogWheel.interval);
+                        }
+                        $('#jogWheel .knob .base').attr('style', 'none');
+                    }
                 }
             });
 
+            // TODO: Mouse wheel scrolling.
             // Bind mouse scroll wheel.
             // Credits @see http://stackoverflow.com/questions/5722949/ui-slider-mousewheel/5723291#5723291
-            // TODO: Mouse wheel scrolling.
            /*  $('#jogWheel').bind('mousewheel DOMMouseScroll', function (e) {
                 var delta = 0, element = $(this), value, oe;
                 oe = e.originalEvent;  // for jQuery >=1.7

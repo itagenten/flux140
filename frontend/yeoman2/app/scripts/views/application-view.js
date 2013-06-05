@@ -46,13 +46,6 @@ define([
                     window.App.Models.App.set('pit', e.currentTarget.value);
                 }
             });
-            $('#playButton').click(function(e) {
-                e.preventDefault();
-                setInterval(function() {
-                    window.App.Models.App.set('pit',
-                        window.App.Models.App.get('pit') + 1);
-                }, 1000);
-            });
 
             this.listenTo(window.App.Models.Gallery,
                 'change:minPit, change:maxPit', function () {

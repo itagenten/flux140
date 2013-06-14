@@ -76,7 +76,7 @@ define([
                         _.map(element.contents, function(image) {
                             return {
                                 pit: parseInt(image.name, 10),
-                                src: 'content/Firefox/' + element.name + '/' + image.name,
+                                src: 'content/' + browser + '/' + element.name + '/' + image.name,
                             };
                         }))
                 });

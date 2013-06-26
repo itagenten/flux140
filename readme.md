@@ -39,3 +39,17 @@ You (or rather your CI stack) will have to create `tree.json` using the free [tr
 
 **NOTE**: The `-J` option for JSON output has not yet been merged into mainline tree, that is, tree v. 1.6.0 does not have it. Steve Baker, the tree author, will merge the changes in when he finds time. In the meantime, use [our version](https://github.com/itagenten/tree/tree/json).
 
+
+### Shout-outs to our fellow open sorcerers
+
+The application has been created using
+
+* [Yeoman](http://yeoman.io/),
+* [Backbone.js](http://backbonejs.org/), 
+* [Require.JS](http://requirejs.org/),
+* [Tree](http://mama.indstate.edu/users/ice/tree/),
+* [jQuery](http://jquery.com/),
+* [jQuery UI slider plugin](http://jqueryui.com/slider/),
+* [jQuery UI KnobKnob plugin](https://github.com/martinaglv/KnobKnob)
+
+... using [Vim](http://www.vim.org/) on [Ubuntu](http://www.ubuntu.com/). Thanks to all of you folks! Long live open source!

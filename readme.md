@@ -16,7 +16,7 @@ Everybody loves them.
 
 ### How to use
 
-Configure your CI stack (e.g. [Jenkins](http://www.jenkins-ci.org/), [Selenium](http://docs.seleniumhq.org/projects/webdriver/) to copy the generated screenshots to a directory like this:
+Configure your CI stack (e.g. [Jenkins](http://www.jenkins-ci.org/), [Selenium](http://docs.seleniumhq.org/projects/webdriver/)) to copy the generated screenshots to a directory like this:
 
     content
     ├── tree.json

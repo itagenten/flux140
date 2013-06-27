@@ -48,6 +48,7 @@ define([
             if (!this.get('ready')) {
                 if (window.App.Models.App.get('browser') === '') {
                     // If no browser is given, choose the first one in the list.
+                    // This will trigger _parseBrowserToImageStacksCollection()
                     window.App.Models.App.set('browser', browsers[0]);
                 } else {
                     this._parseBrowserToImageStacksCollection();

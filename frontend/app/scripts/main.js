@@ -28,8 +28,8 @@ require.config({
         underscore: '../components/underscore-amd/underscore',
         'bootstrap-dropdown': '../components/bootstrap/js/bootstrap-dropdown',
         templates: 'templates/compiled',
-        knobknob: '../components/KnobKnob/knobKnob/knobKnob.jquery',
-        transform: '../components/KnobKnob/knobKnob/transform',
+        knobknob: '../components/knobknob/knobKnob/knobKnob.jquery',
+        transform: '../components/knobknob/knobKnob/transform',
     }
 });
 

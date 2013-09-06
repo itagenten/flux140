@@ -4,5 +4,5 @@ dist
 .sass-cache
 app/components
 *.swp
-app/scripts/templates/compiled.js
+# app/scripts/templates/compiled.js
 app/content/*

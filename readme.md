@@ -16,6 +16,9 @@ Everybody loves them.
 
 ### How to use
 
+After checking out the repo, pull in dependencies using [Bower](http://bower.io/):
+    flux140/frontend > bower install
+
 Configure your CI stack (e.g. [Jenkins](http://www.jenkins-ci.org/), [Selenium](http://docs.seleniumhq.org/projects/webdriver/)) to copy the generated screenshots to a directory like this:
 
     content
@@ -45,6 +48,7 @@ You (or rather your CI stack) will have to create `tree.json` using the free [tr
 The application has been created using
 
 * [Yeoman](http://yeoman.io/),
+* [Bower](http://bower.io/),
 * [Backbone.js](http://backbonejs.org/), 
 * [Require.JS](http://requirejs.org/),
 * [Tree](http://mama.indstate.edu/users/ice/tree/),

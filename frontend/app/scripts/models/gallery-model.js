@@ -29,6 +29,8 @@ define([
             log('Init: gallery-model.');
             // TODO: Set the URL?
 
+            // This smells. What's up here? Should this be a
+            // "listenToOnce" instead?
             this.listenTo(window.App.Models.App,
                 'change:browser', this._parseBrowserToImageStacksCollection);
 

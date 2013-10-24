@@ -13,7 +13,7 @@ define([
     var DetailView = Backbone.View.extend({
         el: $('div.main'),
         // template: JST['app/scripts/templates/detail.ejs'],
-        model: window.App.Models.Gallery || (window.App.Models.Gallery = new GalleryModel()),
+        model: null,
         title: "", // Title of current imageStack
         imageStackView: null,
         _gotoPit: function () {

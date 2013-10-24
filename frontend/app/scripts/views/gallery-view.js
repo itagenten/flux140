@@ -13,7 +13,7 @@ define([
     var GalleryView = Backbone.View.extend({
         el: $('div.main'),
         template: JST['app/scripts/templates/gallery.ejs'],
-        model: window.App.Models.Gallery || (window.App.Models.Gallery = new GalleryModel()),
+        model: null,
         imageStackViews: [],
         _gotoPit: function () {
             var pit = window.App.Models.App.get('pit');

@@ -34,7 +34,7 @@ define([
         home: function () {
             // Open latest gallery page when ready (~= JSON has been parsed).
             var that = this;
-            this.listenToOnce(window.App.Models.Gallery, 'ready',
+            this.listenToOnce(window.App.Models.App, 'ready',
                 function () {
                     setTimeout(function () {
                         that.navigate('gallery/' +

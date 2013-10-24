@@ -47,8 +47,8 @@ define([
                 }
             });
 
-            this.listenTo(window.App.Models.Gallery,
-                'change:minPit, change:maxPit', function () {
+            this.listenTo(window.App.Models.App,
+                'change:gallery', function () {
                     $('#timeSlider').slider({
                         min: window.App.Models.Gallery.get('minPit'),
                         max: window.App.Models.Gallery.get('maxPit')

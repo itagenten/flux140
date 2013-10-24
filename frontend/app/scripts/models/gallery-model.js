@@ -11,64 +11,30 @@ define([
     log('Load: gallery-model.');
 
     var GalleryModel = Backbone.Model.extend({
-        url: 'content/tree.json',
-        response: null, // Container for JSON response
         defaults: {
-            browser: '',
+            gallery: '', // Our gallery name
             minPit: 0,   // Oldest and...
             maxPit: 10,  // newest screenshot set.
             imageStacks: new ImageStacksCollection()
         },
         _setReady: function() {
-            // Fire event & set property after having loaded all content.
-            log('Ready: gallery-model.');
+            log('Ready: gallery-model: ' + this.get('gallery') +
+                ', PITs ' + this.get('minPit') + '..' +
+                this.get('maxPit') + '.');
             this.trigger('ready');
-            this.set('ready', true);
-
-            // This smells. What's up here?
-            // This is not a good arch.
-            this.listenTo(window.App.Models.App,
-                'change:browser', this._parseBrowserToImageStacksCollection);
         },
         initialize: function(options) {
-            log('Init: gallery-model.');
-
-            this.fetch();
+            log('Init: gallery-model: ' + options.gallery + '.');
+            // TODO: do this lazy on first read instead. FS ~ 2013-10-24
+            this._parseTreeToImageStacksCollection();
         },
-        parse: function(response, options) {
-            log('Parse: gallery-model.');
-            this.response = response;
-
-            // What browsers do we have?
-            var browsers = _.pluck(
-                _.where(response[0].contents, {'type': 'directory'}),
-                'name');
-            window.App.Models.App.set('browsers', browsers);
-
-            // If we haven't parsed any collection so far: Do it now
-            if (!this.get('ready')) {
-                if (window.App.Models.App.get('browser') === '') {
-                    // If no browser is given, choose the first one in the list.
-                    // This will trigger _parseBrowserToImageStacksCollection()
-                    window.App.Models.App.set('browser', browsers[0]);
-                } else {
-                    this._parseBrowserToImageStacksCollection();
-                }
-            }
-        },
-        _parseBrowserToImageStacksCollection: function() {
-            if (!this.response) {
-                // If the router calls us before loading is finished, abort.
-                // The code at the end of this.parse() will call us when
-                // loading is done.
-                return;
-            }
+        _parseTreeToImageStacksCollection: function() {
             // TODO: Check if the requested browser exists.
-            var browser = window.App.Models.App.get('browser');
-            this.set('browser', browser);
-            log('_parseBrowserToImageStacksCollection: ' + browser + '.');
+            var gallery = this.get('gallery');
+
             var imageStacks = new ImageStacksCollection();
-            _.forEach(_.findWhere(this.response[0].contents, {'name': browser}).contents, function(element) {
+            _.forEach(_.findWhere(window.App.Models.App.response[0].contents,
+                                    {'name': gallery}).contents, function(element) {
                 if (element.type !== 'directory') {
                     return;
                 }
@@ -78,7 +44,7 @@ define([
                         _.map(element.contents, function(image) {
                             return {
                                 pit: parseInt(image.name, 10),
-                                src: 'content/' + browser + '/' + element.name + '/' + image.name,
+                                src: 'content/' + gallery + '/' + element.name + '/' + image.name,
                             };
                         }))
                 });

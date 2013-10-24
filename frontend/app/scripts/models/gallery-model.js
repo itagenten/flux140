@@ -24,15 +24,14 @@ define([
             log('Ready: gallery-model.');
             this.trigger('ready');
             this.set('ready', true);
+
+            // This smells. What's up here?
+            // This is not a good arch.
+            this.listenTo(window.App.Models.App,
+                'change:browser', this._parseBrowserToImageStacksCollection);
         },
         initialize: function(options) {
             log('Init: gallery-model.');
-            // TODO: Set the URL?
-
-            // This smells. What's up here? Should this be a
-            // "listenToOnce" instead?
-            this.listenTo(window.App.Models.App,
-                'change:browser', this._parseBrowserToImageStacksCollection);
 
             this.fetch();
         },

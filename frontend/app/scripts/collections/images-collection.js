@@ -1,4 +1,4 @@
-/*global define*/
+/*global define,log*/
 
 define([
     'underscore',
@@ -6,6 +6,8 @@ define([
     'models/image-model'
 ], function (_, Backbone, ImageModel) {
     'use strict';
+
+    log('Load: images-collection.');
 
     var ImagesCollection = Backbone.Collection.extend({
         model: ImageModel

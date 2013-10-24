@@ -51,12 +51,15 @@ define([
 
                     } else {
                         log('Stop: jog-wheel. Step: ' + step);
-                        if (window.App.Views.JogWheel.interval) {
-                            window.clearInterval(window.App.Views.JogWheel.interval);
-                        }
-                        $('#jogWheel .knob .base').attr('style', 'none');
+                        window.App.Views.JogWheel._stop();
                     }
                 }
+            });
+
+            // Doubleclick stops the time warp as well.
+            $('#jogWheel').bind('dblclick', function() {
+                log('Stop: jog-wheel. Doubleclicked.');
+                window.App.Views.JogWheel._stop();
             });
 
             // TODO: Mouse wheel scrolling.
@@ -87,6 +90,14 @@ define([
                 return false;
             }); */
 
+        },
+        _stop: function() {
+            // Stops the time warp.
+            if (window.App.Views.JogWheel.interval) {
+                window.clearInterval(window.App.Views.JogWheel.interval);
+            }
+            $('#jogWheel .knob .base').attr('style', 'none');
+            // $('#jogWheel .top').css('transform','rotate(180deg)');
         }
     });
 

@@ -18,9 +18,8 @@ define([
         events: {
             'click #browsers .dropdown-menu a': function(eventObject) {
                 window.App.Models.App.set('gallery',
-                    eventObject.currentTarget.innerText);
+                    eventObject.currentTarget.text);
                 eventObject.preventDefault();
-                // TODO: This is not registered in my Firefox v24! ~FS 2013-10-25
             }
         },
         _updateNavViews: function () {

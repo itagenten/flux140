@@ -7,6 +7,12 @@ body {
     padding: 0 5%;
 }
 
+#startup-logo {
+    margin: 15em auto 0;
+    display: block;
+    text-align: center;
+}
+
 .imagestack {
     background-color: white;
     cursor: pointer;

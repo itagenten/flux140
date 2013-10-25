@@ -27,38 +27,30 @@ define([
 
         routes: {
             '': 'home',
-            'gallery/:pit/:browser': 'gallery',
-            'detail/:title/:pit/:browser': 'detail'
+            'gallery/:pit/:gallery': 'gallery',
+            'detail/:title/:pit/:gallery': 'detail'
         },
 
         home: function () {
-            // Open latest gallery page when ready (~= JSON has been parsed).
-            var that = this;
-            this.listenToOnce(window.App.Models.App, 'ready',
-                function () {
-                    setTimeout(function () {
-                        that.navigate('gallery/' +
-                            window.App.Models.Gallery.get('maxPit') +
-                            '/default', {trigger: true});
-                    }, 0);
-                }
-            );
+            window.App.Models.Gallery = window.App.Models.App.get('galleries').at(0);
+            this.navigate('gallery/' +
+                window.App.Models.Gallery.get('maxPit') +
+                '/' + window.App.Models.Gallery.get('gallery'),
+                {trigger: true});
         },
-        gallery: function (pit, browser) {
-            window.App.Views.current = new GalleryView();
+        gallery: function (pit, gallery) {
             window.App.Models.App.set('pit', parseInt(pit, 10));
-            if (browser !== 'default') {
-                window.App.Models.App.set('browser', browser);
-            }
+            window.App.Models.App.set('gallery', gallery);
+            window.App.Views.current = new GalleryView();
+            window.App.Views.current.render();
         },
-        detail: function (title, pit, browser) {
+        detail: function (title, pit, gallery) {
+            window.App.Models.App.set('pit', parseInt(pit, 10));
+            window.App.Models.App.set('gallery', gallery);
             window.App.Views.current = new DetailView({
                 'title': title,
             });
-            window.App.Models.App.set('pit', parseInt(pit, 10));
-            if (browser !== 'default') {
-                window.App.Models.App.set('browser', browser);
-            }
+            window.App.Views.current.render();
         }
     });
 

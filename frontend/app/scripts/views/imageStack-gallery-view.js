@@ -20,7 +20,7 @@ define([
                 window.App.Router.navigate(
                     'detail/' + this.model.get('title') + '/' +
                     window.App.Models.App.get('pit') + '/' +
-                    window.App.Models.App.get('browser'),
+                    window.App.Models.App.get('gallery'),
                     {trigger: true});
             }
         },

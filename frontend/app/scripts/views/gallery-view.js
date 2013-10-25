@@ -26,20 +26,16 @@ define([
         _createSubviews: function () {
             this.imageStackViews = [];
             var that = this;
-            this.model.get('imageStacks').each(function(element) {
+            window.App.Models.Gallery.get('imageStacks').each(function(element) {
                 that.imageStackViews.push(
                     new ImageStackGalleryView({model: element})
                 );
             });
-            this.render();
         },
         initialize: function (options) {
             log('Init: gallery-view.');
 
-            this.listenTo(this.model, 'ready', this._createSubviews);
-            if (this.model.get('ready') === true) {
-                this._createSubviews();
-            }
+            this._createSubviews();
 
             this.listenTo(window.App.Models.App, 'change:pit', this._gotoPit);
         },
@@ -59,10 +55,16 @@ define([
 
             return this;
         },
+        destroy: function () {
+            log('Destroy: gallery-view.');
+            _.each(this.imageStackViews, function(iSV) {
+                iSV.remove();
+            });
+        },
         calcUrl: function () {
             return 'gallery/' +
                     window.App.Models.App.get('pit') + '/' +
-                    window.App.Models.App.get('browser');
+                    window.App.Models.App.get('gallery');
         }
     });
 

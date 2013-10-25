@@ -29,19 +29,11 @@ define([
             // Used in calcUrl() below only so far.
             this.title = options.title;
 
-            var that = this;
-            var createSubviews = function () {
-                var stackModel = that.model.get('imageStacks')
-                                           .findWhere({'title': options.title});
-                that.imageStackView = new ImageStackDetailView({
-                    model: stackModel,
-                });
-                that.render();
-            };
-            this.listenToOnce(this.model, 'ready', createSubviews);
-            if (this.model.get('ready') === true) {
-                createSubviews();
-            }
+            var stackModel = window.App.Models.Gallery.get('imageStacks')
+                                       .findWhere({'title': options.title});
+            this.imageStackView = new ImageStackDetailView({
+                model: stackModel,
+            });
 
             this.listenTo(window.App.Models.App, 'change:pit', this._gotoPit);
         },
@@ -64,7 +56,7 @@ define([
         calcUrl: function () {
             return 'detail/' + this.title + '/' +
                     window.App.Models.App.get('pit') + '/' +
-                    window.App.Models.App.get('browser');
+                    window.App.Models.App.get('gallery');
         }
     });
 

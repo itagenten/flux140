@@ -17,9 +17,10 @@ define([
         model: window.App.Models.App || (window.App.Models.App = new AppModel()),
         events: {
             'click #browsers .dropdown-menu a': function(eventObject) {
-                window.App.Models.App.set('browser',
+                window.App.Models.App.set('gallery',
                     eventObject.currentTarget.innerText);
                 eventObject.preventDefault();
+                // TODO: This is not registered in my Firefox v24! ~FS 2013-10-25
             }
         },
         _updateNavViews: function () {
@@ -47,28 +48,35 @@ define([
                 }
             });
 
-            this.listenTo(window.App.Models.App,
-                'change:gallery', function () {
-                    $('#timeSlider').slider({
-                        min: window.App.Models.Gallery.get('minPit'),
-                        max: window.App.Models.Gallery.get('maxPit')
-                    });
-                }
-            );
-
             this.listenToOnce(window.App.Models.App,
-                'change:browsers', function (model, value, options) {
+                'change:galleries', function (model, value, options) {
                     $('#browsers .dropdown-menu').html(
-                        _.map(value, function (v) {
-                            return '<li><a href="#">' + v + '</a></li>';
+                        value.map(function (v) {
+                            return '<li><a href="#">' + v.get('gallery') + '</a></li>';
                         })
                     );
                 }
             );
             this.listenTo(window.App.Models.App,
-                'change:browser', function(model, value, options) {
+                'change:gallery', function(model, value, options) {
+                    window.App.Models.Gallery =
+                        window.App.Models.App.get('galleries')
+                            .findWhere({'gallery': value});
+
+                    $('#timeSlider').slider({
+                        min: window.App.Models.Gallery.get('minPit'),
+                        max: window.App.Models.Gallery.get('maxPit')
+                    });
+
                     $('#browsers .dropdown-toggle').html(
                         value + ' <b class="caret"></b>');
+
+                    if (window.App.Views.current) {
+                        window.App.Router.navigate(
+                            window.App.Views.current.calcUrl(),
+                            {trigger: true}
+                        );
+                    }
                 }
             );
         },

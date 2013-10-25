@@ -84,8 +84,14 @@ require([
     }
     window.App.Views.App.render();
 
-    // Init router
-    window.App.Router = new Router();
-    Backbone.history.start();
+    // Init router after App has finished parsing the JSON.
+    Backbone.listenToOnce(window.App.Models.App, 'ready',
+        function () {
+            window.setTimeout(function () {
+                window.App.Router = new Router();
+                Backbone.history.start();
+            }, 0);
+        }
+    );
 });
 

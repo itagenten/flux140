@@ -13,9 +13,9 @@ define([
         url: 'content/tree.json',
         response: null, // Container for JSON response
         defaults: {
-            gallery: '',
-            galleries: null,
-            pit: 0  // Point In Time.
+            gallery: '',        // The name (String) of the currently displayed gallery.
+            galleries: null,    // Collection of all available galleries.
+            pit: 0              // Point In Time.
         },
         initialize: function(options) {
             log('Init: application-model.');
@@ -35,16 +35,12 @@ define([
                 )
             );
 
-            // If no browser is given, choose the first one in the list.
-            if (!this.get('ready')) {
-                if (window.App.Models.App.get('gallery') === '') {
-                    // This will trigger _parseBrowserToImageStacksCollection()
-                    // window.App.Models.App.set('gallery', galleries[0]);
-                    console.log('blurt!');
-                } else {
-                    this._parseBrowserToImageStacksCollection();
-                }
-            }
+            // Trigger ready event after JSON has been parsed.
+            var that = this;
+            window.setTimeout(function () {
+                that.trigger('ready');
+                that.set('ready', true);
+            }, 0);
         },
     });
 

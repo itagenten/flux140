@@ -17,7 +17,7 @@ define([
         model: window.App.Models.App || (window.App.Models.App = new AppModel()),
         events: {
             'click #browsers .dropdown-menu a': function(eventObject) {
-                window.App.Models.App.set('gallery',
+                window.App.Models.App.set('currentGallery',
                     eventObject.currentTarget.text);
                 eventObject.preventDefault();
             }
@@ -57,7 +57,7 @@ define([
                 }
             );
             this.listenTo(window.App.Models.App,
-                'change:gallery', function(model, value, options) {
+                'change:currentGallery', function(model, value, options) {
                     window.App.Models.Gallery =
                         window.App.Models.App.get('galleries')
                             .findWhere({'gallery': value});

@@ -13,7 +13,7 @@ define([
         url: 'content/tree.json',
         response: null, // Container for JSON response
         defaults: {
-            gallery: '',        // The name (String) of the currently displayed gallery.
+            currentGallery: '', // The name (String) of the currently displayed gallery.
             galleries: null,    // Collection of all available galleries.
             pit: 0              // Point In Time.
         },

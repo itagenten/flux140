@@ -56,7 +56,7 @@ define([
         calcUrl: function () {
             return 'detail/' + this.title + '/' +
                     window.App.Models.App.get('pit') + '/' +
-                    window.App.Models.App.get('gallery');
+                    window.App.Models.App.get('currentGallery');
         }
     });
 

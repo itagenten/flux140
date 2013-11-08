@@ -20,7 +20,7 @@ define([
                 window.App.Router.navigate(
                     'gallery/' +
                     window.App.Models.App.get('pit') + '/' +
-                    window.App.Models.App.get('gallery'),
+                    window.App.Models.App.get('currentGallery'),
                     {trigger: true});
             }
         },

@@ -51,7 +51,7 @@ define([
                 'change:galleries', function (model, value, options) {
                     $('#browsers .dropdown-menu').html(
                         value.map(function (v) {
-                            return '<li><a href="#">' + v.get('gallery') + '</a></li>';
+                            return '<li><a href="#">' + v.get('name') + '</a></li>';
                         })
                     );
                 }
@@ -60,7 +60,7 @@ define([
                 'change:currentGallery', function(model, value, options) {
                     window.App.Models.Gallery =
                         window.App.Models.App.get('galleries')
-                            .findWhere({'gallery': value});
+                            .findWhere({'name': value});
 
                     $('#timeSlider').slider({
                         min: window.App.Models.Gallery.get('minPit'),

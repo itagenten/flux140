@@ -35,7 +35,7 @@ define([
             window.App.Models.Gallery = window.App.Models.App.get('galleries').at(0);
             this.navigate('gallery/' +
                 window.App.Models.Gallery.get('maxPit') +
-                '/' + window.App.Models.Gallery.get('currentGallery'),
+                '/' + window.App.Models.Gallery.get('name'),
                 {trigger: true});
         },
         gallery: function (pit, gallery) {

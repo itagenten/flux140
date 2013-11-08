@@ -12,25 +12,25 @@ define([
 
     var GalleryModel = Backbone.Model.extend({
         defaults: {
-            gallery: '', // Our gallery name
+            name: '', // Our gallery name/identifier
             minPit: 0,   // Oldest and...
             maxPit: 10,  // newest screenshot set.
             imageStacks: new ImageStacksCollection()
         },
         _setReady: function() {
-            log('Ready: gallery-model: ' + this.get('gallery') +
+            log('Ready: gallery-model: ' + this.get('name') +
                 ', PITs ' + this.get('minPit') + '..' +
                 this.get('maxPit') + '.');
             this.trigger('ready');
         },
         initialize: function(options) {
-            log('Init: gallery-model: ' + options.gallery + '.');
+            log('Init: gallery-model: ' + options.name + '.');
             // TODO: do this lazy on first read instead. FS ~ 2013-10-24
             this._parseTreeToImageStacksCollection();
         },
         _parseTreeToImageStacksCollection: function() {
-            // TODO: Check if the requested browser exists.
-            var gallery = this.get('gallery');
+            // TODO: Check if the requested gallery exists.
+            var gallery = this.get('name');
 
             var imageStacks = new ImageStacksCollection();
             _.forEach(_.findWhere(window.App.Models.App.response[0].contents,

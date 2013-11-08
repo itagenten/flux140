@@ -31,7 +31,7 @@ define([
                 'name');
             this.set('galleries', new GalleriesCollection(
                 _.map(galleries,
-                      function(gallery) {return {'gallery': gallery};})
+                      function(gallery) {return {'name': gallery};})
                 )
             );
 

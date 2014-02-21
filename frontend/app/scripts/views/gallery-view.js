@@ -18,9 +18,7 @@ define([
         _gotoPit: function () {
             var pit = window.App.Models.App.get('pit');
             this.imageStackViews.map(function(imageStackView) {
-                setTimeout(function () {
-                    imageStackView._updateDom(pit);
-                }, 0);
+                imageStackView._updateDom(pit);
             });
         },
         _createSubviews: function () {

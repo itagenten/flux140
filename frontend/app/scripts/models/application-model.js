@@ -36,11 +36,7 @@ define([
             );
 
             // Trigger ready event after JSON has been parsed.
-            var that = this;
-            window.setTimeout(function () {
-                that.trigger('ready');
-                that.set('ready', true);
-            }, 0);
+            this.trigger('ready');
         },
     });
 

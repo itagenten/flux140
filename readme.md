@@ -37,7 +37,7 @@ The screenshot files get their names from the current build number. When using J
 
 You (or rather your CI stack) will have to create `tree.json` using the free [tree tool](http://mama.indstate.edu/users/ice/tree/)  after adding new files:
 
-    tree -J -v > tree.js
+    tree -J -v > tree.json
 
 **NOTE**: The `-J` option for JSON output has not yet been merged into mainline tree, that is, tree v. 1.6.0 does not have it. Steve Baker, the tree author, will merge the changes in when he finds time. In the meantime, use [our version](https://github.com/itagenten/tree/tree/json).
 

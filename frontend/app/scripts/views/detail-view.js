@@ -18,10 +18,7 @@ define([
         imageStackView: null,
         _gotoPit: function () {
             var pit = window.App.Models.App.get('pit');
-            var that = this;
-            setTimeout(function () {
-                that.imageStackView._updateDom(pit);
-            }, 0);
+            this.imageStackView._updateDom(pit);
         },
         initialize: function (options) {
             log('Init: detail-view.');

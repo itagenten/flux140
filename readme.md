@@ -15,7 +15,7 @@ Everybody loves them.
 
 ### Shameless plug
 
-*Flux140 does not come with an easy install procedure unfortunately. If you are interested in an easy to use solution to record and analyse the progress of your web project and find regressions quickly, __register for the private Beta of [Flux140 SaaS](http://www.flux140.de/)__.*
+Flux140 does not come with an easy install procedure unfortunately. If you are interested in an easy to use solution to record and analyse the progress of your web project and find regressions quickly, __register for the private Beta of [Flux140 SaaS](http://www.flux140.de/)__.
 
 
 ### How to use

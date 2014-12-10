@@ -1,6 +1,6 @@
 # Flux140
 
-... is an offline web application that aims to expedite (and take the pain out of) visual regression testing. Flux140 is a picture viewer that simplifies comparing whole runs of a UI test suite by showing thumbnails of screenshots at a given point in time / build number. These screenshots have to be created in advance. We use our continuous integration server ([Jenkins](http://jenkins-ci.org/)) and [Selenium](http://docs.seleniumhq.org/projects/webdriver/) for that.
+... is an offline web application that aims to expedite (and take the pain out of) visual regression testing. Flux140 is a picture viewer that simplifies comparing whole runs of a UI test suite by showing thumbnails of screenshots at a given point in time / build number. These screenshots have to be created in advance. We use our continuous integration server ([Jenkins](http://jenkins-ci.org/)) and [Selenium](http://docs.seleniumhq.org/projects/webdriver/) for that. (Note to self: check out [pageres](https://github.com/sindresorhus/pageres) for creating screenshots of responsive websites quickly.)
 
 Created by [IT:Agenten](http://www.it-agenten.com "a Munich-based IT dev shop. We're awesome, check us out :)") and published under the permissive [MIT license](license.txt). We of course welcome all contributions, be it bug reports or code. If you don't have an CI stack running and have some money to spare, [IT:Agenten Gmbh](http://www.it-agenten.com/) is glad to help you out. Also, we are planning a ready-to-use SaaS offering.
 

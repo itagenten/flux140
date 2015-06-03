@@ -39,11 +39,11 @@ Configure your CI stack (e.g. [Jenkins](http://www.jenkins-ci.org/), [Selenium](
 
 The screenshot files get their names from the current build number. When using Jenkins the build number is made available to your test scripts in the `BUILD_NUMBER` environment variable.
 
-You (or rather your CI stack) will have to create `tree.json` using the free [tree tool](http://mama.indstate.edu/users/ice/tree/)  after adding new files:
+You (or rather your CI stack) will have to create `tree.json` using the free [tree tool](http://mama.indstate.edu/users/ice/tree/) (> 1.7.0) after adding new files:
 
     tree -J -v > tree.json
 
-**NOTE**: The `-J` option for JSON output has not yet been merged into mainline tree, that is, tree v. 1.6.0 does not have it. Steve Baker, the tree author, will merge the changes in when he finds time. In the meantime, use [our version](https://github.com/itagenten/tree/tree/json).
+**NOTE**: The `-J` option for JSON output has been added to tree version 1.7.0. Steve Baker has merged our code :) Should you experience any issues, try to use [our version](https://github.com/itagenten/tree/tree/json).
 
 
 ### Shout-outs to our fellow open sorcerers
